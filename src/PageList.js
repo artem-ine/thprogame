@@ -25,7 +25,7 @@ export const PageList = (argument = "") => {
     };
 
     fetchList(
-      `https://api.rawg.io/api/games?key=${process.env.API_KEY}`,
+      `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page_size=9`,
       cleanedArgument
     );
   };

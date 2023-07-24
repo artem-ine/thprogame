@@ -9,8 +9,13 @@ module.exports = {
   // Ceci est le chemin vers le "point d'entrée" de ton app.
   // C'est depuis ce fichier que Webpack commencera à travailler.
   entry: "./src/index.js",
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "bundle.css",
+    }),
+    new Dotenv(), // Load environment variables from .env
+  ],
   watch: true,
-  plugins: [new Dotenv()],
 
   // C'est ici qu'on dit à Webpack où mettre le fichier résultant avec tout ton JS.
   output: {

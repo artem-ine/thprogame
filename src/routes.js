@@ -3,7 +3,7 @@ import { PageDetail } from "./PageDetail.js";
 import { Home } from "./Home.js";
 
 export const routes = {
-  home: Home,
+  "": Home,
   pagelist: PageList,
   pagedetail: PageDetail,
 };

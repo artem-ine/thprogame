@@ -2,7 +2,7 @@
   "name": "thprogame",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --env NODE_ENV=development --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,5 +22,8 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }

@@ -1,3 +1,7 @@
 export const Home = (argument = "") => {
-  console.log("Home", argument);
+  const render = () => {
+    pageContent.innerHTML = `<p>heeey</p>
+    `;
+  };
+  render();
 };

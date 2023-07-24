@@ -1,5 +1,3 @@
-import { API_KEY } from "/.env";
-
 export const PageList = (argument = "") => {
   const preparePage = () => {
     const cleanedArgument = argument.trim().replace(/\s+/g, "-");
@@ -26,7 +24,10 @@ export const PageList = (argument = "") => {
         });
     };
 
-    fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument);
+    fetchList(
+      `https://api.rawg.io/api/games?key=${process.env.API_KEY}`,
+      cleanedArgument
+    );
   };
 
   const render = () => {

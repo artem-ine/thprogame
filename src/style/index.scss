@@ -1,6 +1,214 @@
-$color-red: rgb(255, 0, 0);
 
-p {
-  color: $color-red;
+$text-color: #f1f1f1;
+$red-accent: #cc0b31;
+$background: #191919;
+
+
+@mixin button-styles {
+  background-color: $red-accent;
+  color: $text-color;
+  font-weight: bolder;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
+.button {
+  @include button-styles;
+}
+
+.title{
+  color: $red-accent;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $background;
+  color: #f1f1f1;
+  margin-top: 20px;
+  margin-left: 80px;
+  margin-right: 80px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+  align-items: center;
+  min-height: calc(100vh - 100px); 
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: $background;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: $background;
+}
+
+#search-input {
+  padding: 10px 30px 8px 50px; 
+  border: none;
+  background-color: $background;
+  border: 1px solid $text-color;
+  border-radius: 25px;
+}
+
+#search-button {
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 100px;
+}
+
+.articles{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.card {
+  width: 500px;
+  flex-basis: calc(33.3333% - 20px);
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4%;
+  }
+
+  .card-content {
+    padding: 16px;
+
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    
+    .platform-icon{
+      height: 20px;
+      width: 20px;
+    }
+
+    .card-button {
+      background-color: $red-accent;
+      color: $text-color;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: $text-color;
+      }
+    }
+  }
+}
+
+.card-description{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+
+a, a:visited {
+	text-decoration: none;
+	position: relative;
+	color: $red-accent;
+	
+	&:after {
+		content: '';
+		height: 3px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		background: $red-accent;
+		transition: 0.2s;
+	}
+
+	&:hover:after {
+		width: 100%;
+	}
+	
+	&.block {
+		display: block;
+		padding: 0.5em;
+		
+		&:hover {
+			background: #eee;
+		}
+	}
+}
+
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.banner {
+  width: 100%;
+  height: 470px;
+  object-fit: cover;
+  object-position: top;
+}
+
+
+.makers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.etc {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 

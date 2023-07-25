@@ -188,3 +188,7 @@ a.block:hover, a:visited.block:hover {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
+.buyhead {
+  color: #cc0b31;
+}

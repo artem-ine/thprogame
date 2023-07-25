@@ -21,13 +21,13 @@ export const PageDetail = (argument) => {
       // articleDOM.querySelector("p.release-date span").innerHTML = released;
       // articleDOM.querySelector("p.description").innerHTML = description;
       articleDOM.innerHTML = `
-        <div class="info">
+        <div class = "info">
           <img src="${background_image}" class="banner">
           <div class="description">
             <h2>${name},</h2>
             <p>${description}</p>
           </div>
-          <div class="makers">
+          <div class = "makers">
             <div>
               <p><b>Release Date</b></p>
               <p>${released}</p>
@@ -51,7 +51,7 @@ export const PageDetail = (argument) => {
             </div>
           </div>
 
-          <div class ="etc">
+          <div class = "etc">
             <div>
               <p><b>Genre</b></p>
               <p>${genres.map((genre) => genre.name).join(", ")}</p>
@@ -62,9 +62,9 @@ export const PageDetail = (argument) => {
               <p>${tags.map((tag) => tag.name).join(", ")}</p>
             </div>
           </div>
-          <div class ="stores">
+          <div class = "stores">
             <div>
-              <h2>BUY</h2>
+              <h2 class="buyhead">BUY</h2>
               <p>${stores
                 .map(
                   (store) =>

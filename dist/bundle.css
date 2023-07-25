@@ -8,6 +8,8 @@
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
+  display: block;
+  margin: 0 auto;
 }
 
 .title {
@@ -98,16 +100,12 @@ body {
   width: 500px;
   flex-basis: calc(33.3333% - 20px);
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .card img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 4%;
-}
-.card .card-content {
-  padding: 16px;
 }
 .card .card-content .card-title {
   font-size: 20px;

@@ -278,17 +278,14 @@ a, a:visited {
   height: 100%;
 }
 
-/* Add hover effect to show card back on hover */
 .card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
-/* Show the back side on hover */
 .card:hover .card-back {
   opacity: 1;
 }
 
-/* Style the text on the back of the card */
 .card-back .card-content {
   text-align: center;
   color: white;

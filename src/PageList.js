@@ -80,9 +80,8 @@ export const PageList = (argument = "") => {
                   <div class="card-content">
                     <p>${article.released}</p>
                     <p>${article.name}</p>
-                    <p>${article.publishers}</p>
                     <p>${article.rating}/${article.rating_top}</p>
-                    <p>${article.tags}</p>
+                    <p>${article.tags.map((tag) => tag.name).join(", ")}</p>
                   </div>
                 </div>
               </div>

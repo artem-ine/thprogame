@@ -165,7 +165,7 @@ export const PageList = (argument = "") => {
 
   const render = () => {
     pageContent.innerHTML = `
-      <section>
+      <section class="intro">
         <h2>Welcome,</h2>
         <p>The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame,
         the video game industry’s top talent pack the Los Angeles Convention Center, connecting tens of thousands of the best,
@@ -178,7 +178,7 @@ export const PageList = (argument = "") => {
         <div class="filter">
           <label for="platform">Platform:</label>
           <select id="platform">
-            <option value="any">Any</option>
+            <option value="any" selected>Any</option>
             <option value="playstation">PlayStation</option>
             <option value="xbox">Xbox</option>
             <option value="nintendo">Nintendo</option>

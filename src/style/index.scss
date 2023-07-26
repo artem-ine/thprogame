@@ -2,6 +2,10 @@
 $text-color: #f1f1f1;
 $red-accent: #cc0b31;
 $background: #191919;
+$big-font-size: 30px;
+$medium-font-size: 16px;
+$button-font-size: 14px;
+$mobile-width: 414px;
 
 
 @mixin button-styles {
@@ -12,19 +16,26 @@ $background: #191919;
   border: none;
   display: block;
   margin: 0 auto;
-  font-size: 16px;
+  font-size: $button-font-size;
 }
 
 @mixin header-styles {
   font-weight: bolder;
   color: $red-accent;
-  font-size: 24px;
+  font-size: $big-font-size;
 }
 
 @mixin subtitle-styles{
   font-weight: bold;
-  font-size: 20px;
+  font-size: $medium-font-size;
 }
+
+@mixin mobile {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
+}
+
 
 .button {
   @include button-styles;
@@ -46,10 +57,10 @@ body {
   min-height: 100vh;
   background-color: $background;
   color: #f1f1f1;
-  margin-top: 20px;
-  margin-left: 80px;
-  margin-right: 80px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar {
@@ -82,6 +93,7 @@ body {
   padding: 10px 30px 8px 50px; 
   border: none;
   background-color: $background;
+  color: $text-color;
   border: 1px solid $text-color;
   border-radius: 25px;
 }
@@ -103,22 +115,21 @@ body {
   height: 20px;
 }
 
-
 .articles{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 25px;
 }
 
 .card {
-  width: 500px;
+  width: 400px;
   flex-basis: calc(33.3333% - 20px);
   overflow: hidden;
 
   img {
-    width: 500px;
-    height: 300px;
+    width: 100%;
+    height: 250px;
     display: block;
   }
 
@@ -240,3 +251,5 @@ a, a:visited {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+

@@ -30,15 +30,14 @@ export const PageDetail = (argument) => {
           if (responseData.results[0]) {
             const trailerDiv = document.querySelector(".trailer");
             trailerDiv.innerHTML = `
-                <h2 class="header">test</h2>
+                <h2 class="header">TRAILER</h2>
                 <div id="video">
                   <iframe
-                    width="100%"
-                    height="315"
                     src="${responseData.results[0].data.max}"
                     title="Game Trailer"
                     frameborder="0"
                     allowfullscreen
+                    autoplay="0"
                   ></iframe>
                 </div>
               `;
@@ -63,31 +62,28 @@ export const PageDetail = (argument) => {
           if (responseData.results.length > 0) {
             const screenshotDiv = document.querySelector(".screenshots");
             let screenshotsHTML = `
-        <h2 class="header">SCREENSHOTS</h2>
-        <div id="screenshots">
-      `;
-
+              <h2 class="header">SCREENSHOTS</h2>
+              <div id="screenshots">
+            `;
             responseData.results.forEach((screenshot) => {
               screenshotsHTML += `
-          <img
-            src="${screenshot.image}"
-            alt="Screenshot"
-            class="card"
-          >
-        `;
+                <img
+                  src="${screenshot.image}"
+                  alt="Screenshot"
+                  class="card"
+                >
+              `;
             });
-
             screenshotsHTML += `
-        </div>
-      `;
-
+          </div>
+          `;
             screenshotDiv.innerHTML = screenshotsHTML;
           } else {
             const screenshotDiv = document.querySelector(".screenshots");
             screenshotDiv.innerHTML = `
-        <h2 class="header">SCREENSHOTS</h2>
-        <p>No screenshots available for now.</p>
-      `;
+            <h2 class="header">SCREENSHOTS</h2>
+            <p>No screenshots available for now.</p>
+          `;
           }
         })
         .catch((error) => {
@@ -98,7 +94,7 @@ export const PageDetail = (argument) => {
         <section class="game-info">
           <img src="${background_image}" class="banner">
           <div class="ctacontainer">
-            <button class="cta button"><a href="${website}">Check Website</a></button>
+            <button class="cta button"><a href="${website}">Check Website        ➤</a></button>
           </div>
           <div class="detail-heading">
             <h2>${name},</h2>

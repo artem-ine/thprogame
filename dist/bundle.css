@@ -18,6 +18,11 @@
   font-size: 24px;
 }
 
+.subtitle {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -159,7 +164,7 @@ a.block:hover, a:visited.block:hover {
   background: #eee;
 }
 
-.info {
+.game-info {
   display: flex;
   flex-direction: column;
   margin: 10px 0;
@@ -172,14 +177,24 @@ a.block:hover, a:visited.block:hover {
   object-position: top;
 }
 
-.makers {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.detail-heading {
+  display: flex;
+  justify-content: space-between;
 }
 
-.etc {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.makers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid {
+  flex: 1;
 }
 
 .ctacontainer {

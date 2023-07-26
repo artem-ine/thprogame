@@ -16,20 +16,17 @@ export const PageDetail = (argument) => {
         platforms,
         stores,
         id,
-        slug,
+        website,
+        reviews_count,
       } = gameData;
 
       const articleDOM = document.querySelector(".page-detail .article");
-      // articleDOM.querySelector("h1.title").innerHTML = name;
-      // articleDOM.querySelector("p.release-date span").innerHTML = released;
-      // articleDOM.querySelector("p.description").innerHTML = description;
 
       fetch(
         `https://api.rawg.io/api/games/${id}/movies?key=${process.env.API_KEY}`
       )
         .then((response) => response.json())
         .then((responseData) => {
-          console.log(responseData.results[0]);
           if (responseData.results[0]) {
             const trailerDiv = document.querySelector(".trailer");
             trailerDiv.innerHTML = `
@@ -57,52 +54,95 @@ export const PageDetail = (argument) => {
           console.error(error);
         });
 
+      fetch(
+        `https://api.rawg.io/api/games/${id}/screenshots?key=${process.env.API_KEY}`
+      )
+        .then((response) => response.json())
+        .then((responseData) => {
+          console.log(responseData);
+          if (responseData.results.length > 0) {
+            const screenshotDiv = document.querySelector(".screenshots");
+            let screenshotsHTML = `
+        <h2 class="header">SCREENSHOTS</h2>
+        <div id="screenshots">
+      `;
+
+            responseData.results.forEach((screenshot) => {
+              screenshotsHTML += `
+          <img
+            src="${screenshot.image}"
+            alt="Screenshot"
+            class="card"
+          >
+        `;
+            });
+
+            screenshotsHTML += `
+        </div>
+      `;
+
+            screenshotDiv.innerHTML = screenshotsHTML;
+          } else {
+            const screenshotDiv = document.querySelector(".screenshots");
+            screenshotDiv.innerHTML = `
+        <h2 class="header">SCREENSHOTS</h2>
+        <p>No screenshots available for now.</p>
+      `;
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
       articleDOM.innerHTML = `
-        <div class="info">
+        <section class="game-info">
           <img src="${background_image}" class="banner">
           <div class="ctacontainer">
-            <button class="cta button">Check Website</button>
+            <button class="cta button"><a href="${website}">Check Website</a></button>
           </div>
-          <div class="description">
+          <div class="detail-heading">
             <h2>${name},</h2>
-            <p class="header">${rating}/${rating_top}</p>
+            <p class="header">${rating}/${rating_top} - for ${reviews_count} reviews</p>
+          </div>
+          <div>
             <p>${description}</p>
           </div>
           <div class="makers">
-            <div>
-              <p><b>Release Date</b></p>
+            <div class="grid">
+              <h3 class="subtitle">Release Date</h3>
               <p>${released}</p>
             </div>
 
-            <div>
-              <p><b>Developer</b></p>
+            <div class="grid">
+              <h3 class="subtitle">Developer</h3>
               <p>${developers.map((dev) => dev.name).join(", ")}</p>
             </div>
 
-            <div>
-              <p><b>Platforms</b></p>
+            <div class="grid">
+              <h3 class="subtitle">Platform</h3>
               <p>${platforms
                 .map((platform) => platform.platform.name)
                 .join(", ")}</p>
             </div>
 
-            <div>
-              <p><b>Publisher</b></p>
+            <div class="grid">
+              <h3 class="subtitle">Publisher</h3>
               <p>${publishers.map((publisher) => publisher.name).join(", ")}</p>
             </div>
           </div>
 
-          <div class="etc">
-            <div>
-              <p><b>Genre</b></p>
+          <div class="add-info">
+            <div class="grid">
+              <h3 class="subtitle">Genre</h3>
               <p>${genres.map((genre) => genre.name).join(", ")}</p>
             </div>
 
-            <div>
-              <p><b>Tags</b></p>
+            <div class="grid">
+              <h3 class="subtitle">Tags</h3>
               <p>${tags.map((tag) => tag.name).join(", ")}</p>
             </div>
           </div>
+
           <div class="stores">
             <div>
               <h2 class="header">BUY</h2>
@@ -116,7 +156,6 @@ export const PageDetail = (argument) => {
             </div>
           </div>
           <div class="trailer">
-            <h2 class="header">TRAILER</h2>
           </div>
           <div class="screenshots">
           </div>

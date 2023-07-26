@@ -21,12 +21,21 @@ $background: #191919;
   font-size: 24px;
 }
 
+@mixin subtitle-styles{
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .button {
   @include button-styles;
 }
 
 .header { 
   @include header-styles;
+}
+
+.subtitle{
+  @include subtitle-styles;
 }
 
 body {
@@ -186,7 +195,7 @@ a, a:visited {
 }
 
 
-.info {
+.game-info {
   display: flex;
   flex-direction: column;
   margin: 10px 0;
@@ -199,15 +208,24 @@ a, a:visited {
   object-position: top;
 }
 
-
-.makers {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.detail-heading{
+  display: flex;
+  justify-content: space-between;
 }
 
-.etc {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.makers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid{
+  flex: 1;
 }
 
 .ctacontainer {

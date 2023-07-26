@@ -1,72 +1,71 @@
 export const PageList = (argument = "") => {
-  const preparePage = () => {
-    const cleanedArgument = argument.trim().replace(/\s+/g, "-");
+  const cleanedArgument = argument.trim().replace(/\s+/g, "-");
 
-    const platformLogos = {
-      playstation: "src/assets/images/logos/ps4.svg",
-      xbox: "src/assets/images/logos/xbox.svg",
-      nintendo: "src/assets/images/logos/switch.svg",
-      mobile: "src/assets/images/logos/mobile.svg",
-      macos: "src/assets/images/logos/macos.svg",
-      pc: "src/assets/images/logos/windows.svg",
-      linux: "src/assets/images/logos/linux.svg",
-      windows: "src/assets/images/logos/windows.svg",
-    };
+  const platformLogos = {
+    playstation: "src/assets/images/logos/ps4.svg",
+    xbox: "src/assets/images/logos/xbox.svg",
+    nintendo: "src/assets/images/logos/switch.svg",
+    mobile: "src/assets/images/logos/mobile.svg",
+    macos: "src/assets/images/logos/macos.svg",
+    pc: "src/assets/images/logos/windows.svg",
+    linux: "src/assets/images/logos/linux.svg",
+    windows: "src/assets/images/logos/windows.svg",
+  };
 
-    const platformGroups = {
-      playstation: [
-        "playstation 4",
-        "playstation 5",
-        "playstation 3",
-        "playstation 2",
-        "playstation 1",
-        "ps4",
-        "ps5",
-        "ps",
-      ],
-      xbox: ["xbox one", "xbox series x", "xbox"],
-      nintendo: [
-        "nintendo switch",
-        "nintendo ds",
-        "nintendo dsi",
-        "nintendo 3ds",
-        "nintendo",
-        "wii u",
-      ],
-      pc: ["pc", "windows"],
-      linux: ["linux"],
-      macos: ["macos"],
-      mobile: ["mobile", "android"],
-    };
+  const platformGroups = {
+    playstation: [
+      "playstation 4",
+      "playstation 5",
+      "playstation 3",
+      "playstation 2",
+      "playstation 1",
+      "ps4",
+      "ps5",
+      "ps",
+    ],
+    xbox: ["xbox one", "xbox series x", "xbox"],
+    nintendo: [
+      "nintendo switch",
+      "nintendo ds",
+      "nintendo dsi",
+      "nintendo 3ds",
+      "nintendo",
+      "wii u",
+    ],
+    pc: ["pc", "windows"],
+    linux: ["linux"],
+    macos: ["macos"],
+    mobile: ["mobile", "android"],
+  };
 
-    const getPlatformGroupKey = (platformName) => {
-      for (const groupKey in platformGroups) {
-        if (
-          platformGroups[groupKey].some((name) =>
-            platformName.toLowerCase().includes(name)
-          )
-        ) {
-          return groupKey;
-        }
+  const getPlatformGroupKey = (platformName) => {
+    for (const groupKey in platformGroups) {
+      if (
+        platformGroups[groupKey].some((name) =>
+          platformName.toLowerCase().includes(name)
+        )
+      ) {
+        return groupKey;
       }
-      return null;
-    };
+    }
+    return null;
+  };
 
-    let totalItemsDisplayed = 0;
-    const numItemsToShow = 9;
-    const maxItems = 27;
+  let totalItemsDisplayed = 0;
+  const numItemsToShow = 9;
+  const maxItems = 27;
 
-    const displayResults = (articles) => {
-      const resultsContainer = document.querySelector(".page-list .articles");
+  const displayResults = (articles) => {
+    const resultsContainer = document.querySelector(".page-list .articles");
 
-      // If it's the first page, replace the content, else append it
-      if (totalItemsDisplayed === 0) {
-        resultsContainer.innerHTML = "";
-      }
+    // If it's the first page, replace the content, else append it
+    if (totalItemsDisplayed === 0) {
+      resultsContainer.innerHTML = "";
+    }
 
-      const newResultsContent = articles
-        .map(
-          (article) => `
+    const newResultsContent = articles
+      .map(
+        (article) => `
             <article class="cardGrid">
               <div class="card">
                 <img src="${article.background_image}" alt="Card image cap">
@@ -90,52 +89,54 @@ export const PageList = (argument = "") => {
                 </div>
               </div>
             </article>`
-        )
-        .join("\n");
+      )
+      .join("\n");
 
-      resultsContainer.insertAdjacentHTML("beforeend", newResultsContent);
-      totalItemsDisplayed += articles.length;
+    resultsContainer.insertAdjacentHTML("beforeend", newResultsContent);
+    totalItemsDisplayed += articles.length;
 
-      // Hide "Show More" button when the maxItems limit is reached
-      const showMoreButton = document.getElementById("showMoreButton");
-      if (totalItemsDisplayed >= maxItems) {
-        showMoreButton.style.display = "none";
-      } else {
-        showMoreButton.style.display = "block";
-      }
-    };
+    // Hide "Show More" button when the maxItems limit is reached
+    const showMoreButton = document.getElementById("showMoreButton");
+    if (totalItemsDisplayed >= maxItems) {
+      showMoreButton.style.display = "none";
+    } else {
+      showMoreButton.style.display = "block";
+    }
+  };
 
-    const handlePlatformFilter = () => {
-      const platformFilterDropdown = document.getElementById("platform");
-      const selectedPlatform = platformFilterDropdown.value;
-      totalItemsDisplayed = 0; // Reset the total items displayed counter
-      fetchList(
-        `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page_size=9`,
-        cleanedArgument,
-        selectedPlatform
-      );
-    };
+  const handlePlatformFilter = () => {
+    const platformFilterDropdown = document.getElementById("platform");
+    const selectedPlatform = platformFilterDropdown.value;
+    totalItemsDisplayed = 0; // Reset the total items displayed counter
 
-    const fetchList = (url, argument, platformFilter) => {
-      let finalURL = argument ? `${url}&search=${argument}` : url;
-
-      // Add platform filtering if a specific platform is selected
-      if (platformFilter && platformFilter !== "any") {
-        finalURL += `&platforms=${platformFilter}`;
-      }
-
-      fetch(finalURL)
-        .then((response) => response.json())
-        .then((responseData) => {
-          displayResults(responseData.results);
-        });
-    };
+    console.log("Selected platform:", selectedPlatform);
 
     fetchList(
       `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page_size=9`,
-      cleanedArgument
+      cleanedArgument,
+      selectedPlatform
     );
+  };
 
+  const fetchList = (url, argument, platformFilter) => {
+    let finalURL = argument ? `${url}&search=${argument}` : url;
+
+    // Add platform filtering if a specific platform is selected
+    if (platformFilter && platformFilter !== "any") {
+      finalURL += `&platform=${platformFilter}`;
+    }
+
+    console.log("Final URL:", finalURL);
+
+    fetch(finalURL)
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log(responseData.results);
+        displayResults(responseData.results);
+      });
+  };
+
+  const preparePage = () => {
     // Add "Show More" button in the initial rendering
     const showMoreButton = document.createElement("button");
     showMoreButton.id = "showMoreButton";
@@ -155,6 +156,11 @@ export const PageList = (argument = "") => {
         cleanedArgument
       );
     });
+
+    fetchList(
+      `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page_size=9`,
+      cleanedArgument
+    );
   };
 
   const render = () => {
@@ -185,6 +191,9 @@ export const PageList = (argument = "") => {
         <div class="articles row">Loading...</div>
       </section>
     `;
+
+    const platformFilterDropdown = document.getElementById("platform");
+    platformFilterDropdown.addEventListener("change", handlePlatformFilter);
 
     preparePage();
   };

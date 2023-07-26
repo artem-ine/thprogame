@@ -105,8 +105,25 @@ export const PageList = (argument = "") => {
       }
     };
 
-    const fetchList = (url, argument) => {
-      const finalURL = argument ? `${url}&search=${argument}` : url;
+    const handlePlatformFilter = () => {
+      const platformFilterDropdown = document.getElementById("platform");
+      const selectedPlatform = platformFilterDropdown.value;
+      totalItemsDisplayed = 0; // Reset the total items displayed counter
+      fetchList(
+        `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page_size=9`,
+        cleanedArgument,
+        selectedPlatform
+      );
+    };
+
+    const fetchList = (url, argument, platformFilter) => {
+      let finalURL = argument ? `${url}&search=${argument}` : url;
+
+      // Add platform filtering if a specific platform is selected
+      if (platformFilter && platformFilter !== "any") {
+        finalURL += `&platforms=${platformFilter}`;
+      }
+
       fetch(finalURL)
         .then((response) => response.json())
         .then((responseData) => {
@@ -151,9 +168,21 @@ export const PageList = (argument = "") => {
         with both new and existing partners, industry executives, gamers, and social influencers providing unprecedented exposure
         </p>
       </section>
-      <section class="page-list ">
-        <div class="articles row">Loading...</div>
+      <section class="page-list">
+        <div class="filter">
+          <label for="platform">Platform:</label>
+          <select id="platform">
+            <option value="any">Any</option>
+            <option value="playstation">PlayStation</option>
+            <option value="xbox">Xbox</option>
+            <option value="nintendo">Nintendo</option>
+            <option value="pc">PC</option>
+            <option value="linux">Linux</option>
+            <option value="macos">macOS</option>
+            <option value="mobile">Mobile</option>
+          </select>
         </div>
+        <div class="articles row">Loading...</div>
       </section>
     `;
 

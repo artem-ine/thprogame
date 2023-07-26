@@ -66,23 +66,26 @@ export const PageList = (argument = "") => {
     const newResultsContent = articles
       .map(
         (article) => `
-      <article class="cardGrid">
-        <div class="card">
-          <div class="card-inner">
-            <div class="card-front">
-              <!-- Front of the card: Only the image will flip -->
-              <div class="card-image">
-                <img src="${article.background_image}" alt="Card image cap">
+          <article class="cardGrid">
+            <div class="card">
+              <div class="card-inner">
+                <!-- Front of the card: Image -->
+                <div class="card-front">
+                  <div class="card-image">
+                    <img src="${article.background_image}" alt="Card image cap">
+                  </div>
+                </div>
+                <!-- Back of the card: Additional details like release date, editor, etc. -->
+                <div class="card-back">
+                  <div class="card-content">
+                    <p>${article.released}</p>
+                    <p>${article.name}</p>
+                    <p>${article.publishers}</p>
+                    <p>${article.rating}/${article.rating_top}</p>
+                    <p>${article.tags}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <!-- Back of the card: Additional details like release date, editor, etc. -->
-            <div class="card-back">
-              <div class="card-image">
-                <p>Release Date: ...</p>
-                <p>Publisher: ...</p>
-              </div>
-            </div>
-          </div>
               <!-- Card contents: Name and platform icons, clickable -->
               <div class="card-content">
                 <h5 class="card-title">

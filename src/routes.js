@@ -1,9 +1,10 @@
 import { PageList } from "./PageList.js";
 import { PageDetail } from "./PageDetail.js";
-import { Home } from "./Home.js";
 
 export const routes = {
-  "": Home,
-  pagelist: PageList,
+  "": PageList,
   pagedetail: PageDetail,
+  search: (argument) => {
+    PageList(argument);
+  },
 };

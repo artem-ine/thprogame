@@ -23,6 +23,7 @@ export const PageDetail = (argument) => {
       articleDOM.innerHTML = `
         <div class = "info">
           <img src="${background_image}" class="banner">
+          <a href= " # " target = " _blank " class = "cta">Check Website</a>
           <div class="description">
             <h2>${name},</h2>
             <p>${description}</p>

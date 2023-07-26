@@ -126,6 +126,7 @@ body {
   width: 400px;
   flex-basis: calc(33.3333% - 20px);
   overflow: hidden;
+  perspective: 800px;
 
   img {
     width: 100%;
@@ -252,4 +253,25 @@ a, a:visited {
   cursor: pointer;
 }
 
+/* Add styles for the card */
+
+.card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Card Front and Back styles */
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Add hover effect to show card back on hover */
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
 

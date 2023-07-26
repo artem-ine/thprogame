@@ -66,29 +66,46 @@ export const PageList = (argument = "") => {
     const newResultsContent = articles
       .map(
         (article) => `
-            <article class="cardGrid">
-              <div class="card">
+      <article class="cardGrid">
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-front">
+              <!-- Front of the card: Only the image will flip -->
+              <div class="card-image">
                 <img src="${article.background_image}" alt="Card image cap">
-                <div class="card-content">
-                  <h5 class="card-title">  <a href="#pagedetail/${
-                    article.id
-                  }">${article.name}</a></h5>
-                  <p class="card-description">
-                    ${article.platforms
-                      .map((platform) => {
-                        const platformGroupKey = getPlatformGroupKey(
-                          platform.platform.name
-                        );
-                        const logoSrc = platformGroupKey
-                          ? platformLogos[platformGroupKey]
-                          : "";
-                        return `<img src="${logoSrc}" alt="${platform.platform.name}" class="platform-icon">`;
-                      })
-                      .join("")}
-                  </p>
-                </div>
               </div>
-            </article>`
+            </div>
+            <!-- Back of the card: Additional details like release date, editor, etc. -->
+            <div class="card-back">
+              <div class="card-image">
+                <p>Release Date: ...</p>
+                <p>Publisher: ...</p>
+              </div>
+            </div>
+          </div>
+              <!-- Card contents: Name and platform icons, clickable -->
+              <div class="card-content">
+                <h5 class="card-title">
+                  <a href="#pagedetail/${article.id}">${article.name}</a>
+                </h5>
+                <p class="card-description">
+                  ${article.platforms
+                    .map((platform) => {
+                      const platformGroupKey = getPlatformGroupKey(
+                        platform.platform.name
+                      );
+                      const logoSrc = platformGroupKey
+                        ? platformLogos[platformGroupKey]
+                        : "";
+                      return `<img src="${logoSrc}" alt="${platform.platform.name}" class="platform-icon">`;
+                    })
+                    .join("")}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>`
       )
       .join("\n");
 
